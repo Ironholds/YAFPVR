@@ -8,7 +8,10 @@ tag <- function(data){
   is_wm_bot <- grepl(x = data$user_agent, pattern = "(wikiwix-bot|goo wikipedia|MediaWikiCrawler-Google)",
                      perl = TRUE, useBytes = TRUE)
   data$is_spider <- devices == "Spider" | is_wm_bot
-  
+  is_automata <- grepl(x = data$user_agent,
+                       pattern =  "^(MediaWiki|Twisted|crawler4j|Wget/|Java/|curl/|libwww-perl|Python-urllib|WordPress/)",
+                       perl = TRUE, useBytes = TRUE)
+  data$is_automata <- is_automata
   type <- character(nrow(data))
   type[grepl(x = data$user_agent, pattern = "WikipediaApp", fixed = TRUE)] <- "mobile app"
   type[type == "" & grepl(x = data$url, pattern = "\\.(m|wap|zero|mobile)\\.", perl = TRUE)] <- "mobile web"

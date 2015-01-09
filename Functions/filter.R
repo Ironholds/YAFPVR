@@ -1,5 +1,5 @@
 filter <- function(data){
-  
+  data$url <- url_decode(data$url)
   app_handler <- function(x){
     is_app <- grepl(x = x$user_agent, pattern = "WikipediaApp", fixed = TRUE, useBytes = TRUE)
     is_pv <- grepl(x = x$url, pattern = "sections=0", fixed = TRUE, useBytes = TRUE)
