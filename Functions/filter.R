@@ -12,12 +12,12 @@ filter <- function(data){
                                      "text/html; charset=ISO-8859-1",
                                      "text/html; charset=utf-8",
                                      "text/html; charset=UTF-8",
-                                     "application/json"),]
+                                     "application/json; charset=utf-8"),]
   data <- data[grepl(x = data$status_code, pattern = "200", fixed = TRUE),]
   data <- data[grepl(x = data$url,
                      pattern = "((commons|meta|incubator|species)\\.((m|mobile|wap|zero)\\.)?wikimedia|(wik(ibooks|idata|inews|ipedia|iquote|isource|tionary|iversity|ivoyage)))\\.org",
                      perl = TRUE, useBytes = TRUE),]
-  data <- data[grepl(x = data$url, pattern = "((/sr(-(ec|el))?|/w(iki)?|/zh(-(cn|hans|hant|hk|mo|my|sg|tw))?)/|\\?((cur|old)id|title)=)",
+  data <- data[grepl(x = data$url, pattern = "((/sr(-(ec|el))?|/w(iki)?/|/zh(-(cn|hans|hant|hk|mo|my|sg|tw))?)/|\\?((cur|old)id|title)=)",
                perl = TRUE, useBytes = TRUE),]
   data <- data[!grepl(x = data$url, pattern = "(BannerRandom|CentralAutoLogin|MobileEditor|Undefined|UserLogin|ZeroRatedMobileAccess)",
                      perl = TRUE, useBytes = TRUE),]
